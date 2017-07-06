@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="expires" content="0">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <meta content="yes" name="apple-touch-fullscreen" />
+  <meta content="telephone=no,email=no" name="format-detection" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+
+  <link rel="dns-prefetch" href="//sf.panli.com" />
+  <link href="//sf.panli.com/Ued/pc/common/images/favicon.ico?v=2016.07" type="image/ico" rel="shortcut icon" />
+  <title>添加新地址</title>
+  <meta name="keywords" content="Panli代购,代购,海外代购,华人代购,代购中国,淘宝代购,留学生代购">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="//sf.panli.com/Ued/H5/webView/20161026/build/css/app.css?v=20160808" />
+  <style>
+    .hide {
+      display: none
+    }
+  </style>
+  <script src="//sf.panli.com/Ued/H5/webView/20161026/build/js/app.js?v20160809"></script>
+</head>
+
+<body class="bgcolor font-hei">
+  <div class="app">
+    <!--order address-->
+    <section class="main border-top-bottom position-re hide order-address" id="order-address">
+      <ul>
+        <li>
+          <span class="title">收货人</span>
+          <span class="val">番丽</span>
+        </li>
+        <li>
+          <span class="title">联系电话</span>
+          <span class="val">02152717883</span>
+          <span class="add"></span>
+        </li>
+        <li>
+          <span class="title">所在地区</span>
+          <span class="val">上海市普陀区</span>
+          <span class="right"></span>
+        </li>
+        <li>
+          <span class="title">街道</span>
+          <span class="val">桃浦镇</span>
+          <span class="right"></span>
+        </li>
+      </ul>
+      <div class="address">
+        祁连山南路2891弄100号A座5楼 <span class="color-red user-mark">拼命加载中...</span>
+      </div>
+    </section>
+    <!--order address end-->
+    <!--new address -->
+    <section class="main border-top-bottom position-re hide new-address" id="new-address">
+      <ul>
+        <li>
+          <span class="title">收货人</span>
+          <span class="val">番丽</span>
+        </li>
+        <li>
+          <span class="title">联系电话</span>
+          <span class="val">18721045969</span>
+          <span class="add"></span>
+        </li>
+        <li>
+          <span class="title">所在地区</span>
+          <span class="val">上海市嘉定区</span>
+          <span class="right"></span>
+        </li>
+        <li>
+          <span class="title">街道</span>
+          <span class="val">江桥镇</span>
+          <span class="right"></span>
+        </li>
+      </ul>
+      <div class="address">
+        武都路678号5楼仓库 <span class="color-red user-mark">拼命加载中...</span>
+      </div>
+    </section>
+    <!--new address end -->
+    <footer class="footer border-top-bottom position-re">
+      <span class="title">设为默认</span>
+      <span class="btn-switch fr"></span>
+    </footer>
+  </div>
+</body>
+<script>
+  var UserInfo = {
+    'userId': '',
+    'avatarUrl': '',
+    'nickName': ''
+  };
+  var pageinfo = {
+      url: "http://www.panli.com/Special/m/20161026/PanliAddress.html"
+    }
+    // app下 获取用户信息
+  function successMobileUserInfo(Info) {
+    var str = JSON.stringify(Info);
+    var dataStr = JSON.stringify(Info);
+    GetUserInfo(Info);
+    PageStart();
+    if (isNull(UserInfo.userId)) {
+      //myHBListAjax(UserInfo.userId)
+    } else {
+      alert("非法用户,请重新登录");
+    }
+  }
+
+  window.onload = function() {
+    var ss = 'mobile://getMobileUserInfo?returnurl=' + encodeURIComponent(pageinfo.url);
+    location = ss;
+  }
+
+  function PageStart() {
+    var url = 'http://www.panli.com/App_Services/wsSelfPurchase.asmx/UserIdentity';
+    var uid = UserInfo.userId ? UserInfo.userId : UserInfo.UserId;
+    var data = '{userid:"' + uid + '"}';
+
+    $.ajax({
+      type: "POST",
+      url: "/panliapi.asmx/UserIdentity",
+      dataType: "json",
+      contentType: "application/json;utf-8",
+      data: data,
+      timeout: 10000,
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        alert("网络错误" + XMLHttpRequest + textStatus + errorThrown);
+      },
+      success: function(msg) {
+        $(".user-mark").text('PL' + msg.d)
+      }
+    });
+
+  }
+  $(function() {
+
+    showAddress()
+
+    if (isLoginP()) {
+      goToLogin();
+    }
+  });
+
+  var newAddressTime = '2017-07-09';
+
+  function isShowNewAddress() {
+    var bool = false
+    if (GetQueryString('new')) {
+      bool = true
+    } else {
+      var newTime = new Date().getTime()
+      var endTime = new Date(newAddressTime).getTime()
+      newTime > endTime ? bool = true : ''
+    }
+    return bool
+  }
+
+  function GetQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]);
+    return null;
+  }
+
+  function showAddress() {
+    var em = ".order-address"
+
+    if (isShowNewAddress()) {
+      em = ".new-address"
+    }
+
+    $(em).removeClass("hide")
+  }
+</script>
+
+</html>

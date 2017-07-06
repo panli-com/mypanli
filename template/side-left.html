@@ -1,0 +1,122 @@
+<div class="am_left">
+
+  <h2 class="am_dg">
+    <a href="javascript:void(0)"><span>代购</span></a>
+  </h2>
+  <ul>
+    <li key="woyaodaigou"><a href="/mypanli/FillShoppingForm.aspx">我要代购</a></li>
+    <li key="wodegouwuche"><a href="/mypanli/ShoppingCart.aspx" target="new">我的购物车</a></li>
+    <li key="wodeshoucangjia"><a href="/mypanli/Favorite.aspx">我的收藏夹</a></li>
+
+  </ul>
+  <h2 class="am_zzg">
+    <a href="javascript:void(0)">转运</a>
+  </h2>
+  <ul>
+    <li key="wodeweiyishouhuodizhi"><a href="/mypanli/SelfPurchase/Address.aspx">转运地址</a></li>
+    <li key="woyaozizhugou"><a href="/mypanli/SelfPurchase/Order.aspx">我要转运</a></li>
+    <li key="wodeshangpinguanli"><a href="/mypanli/SelfPurchase/List.aspx">我的商品管理</a></li>
+  </ul>
+
+  <h2 class="am_sh">
+    <a href="javascript:void(0)"><span>送货</span></a>
+  </h2>
+  <ul>
+    <li key="wodesonghuoche"><a href="/mypanli/OrderCart.aspx">我的仓库</a></li>
+
+    <li key="wodeyundan"><a href="/mypanli/OrderList.aspx">我的运单</a></li>
+  </ul>
+  <style type="text/css">
+    .animate_show {
+      position: absolute;
+      left: 20px;
+      top: 0px;
+      display: none;
+    }
+    
+    em {
+      font-style: normal;
+    }
+  </style>
+  <script type="text/javascript">
+    function getCookie(name) {
+      var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+      if (arr = document.cookie.match(reg)) return unescape(arr[2]);
+      else return null;
+    }
+    $('*[data-keyc]').click(function() {
+      var key = $(this).attr('data-keyc');
+      var href = this.href;
+      if (!getCookie(key)) {
+        $(this).find('.animate_hide').animate({
+          opacity: 0
+        }, 200)
+        $(this).find('.animate_show').css({
+          opacity: 0
+        }).show().animate({
+          opacity: 1
+        }, 200);
+        var today = new Date();
+        today.setTime(today.getTime() + (24 * 30 * 60 * 60 * 1000));
+        document.cookie = key + "=true;expires=" + today.toGMTString() + ";;path=/";
+        setTimeout(function() {
+          location.href = href;
+        }, 400);
+        return false;
+      }
+    }).each(function() {
+      var key = $(this).attr('data-keyc');
+      if (getCookie(key)) {
+        $(this).text($(this).find('.animate_show').text());
+      }
+
+    });
+  </script>
+  <h2 class="am_jygl">
+    <a href="javascript:void(0)"><span>交易管理</span></a>
+  </h2>
+  <ul>
+    <li key="wodermdzhanghu"><a href="/mypanli/Account/RmbAccount.aspx">我的RMB帐户[充值]</a></li>
+
+    <li key="dongjiejilu"><a href="/mypanli/FreezeRecords/">冻结记录</a></li>
+
+    <li key="xiaofeijilu"><a href="/mypanli/myAccount/ShoppingRecords.aspx">消费记录</a></li>
+    <li key="tuikuanjilu"><a href="/mypanli/Account/RmbRefoundment.aspx">退款记录</a></li>
+
+
+
+    <li key="wodedaijinquan" class="mydaijinquan"><a href="/mypanli/Voucher/">我的代金券</a></li>
+
+    <li key="myPanbi" id="myPanli"><a href="/mypanli/myPanbi/panbi_list.aspx">我的番币</a><span class="red_new"><img src="http://sf.panli.com/FrontEnd/images20090801/newmypanli/coupon/newcoupon/new_img_03.png" /></span></li>
+
+    <style>
+      .mydaijinquan {
+        position: relative;
+      }
+      
+      .red_dian {
+        width: 6px;
+        height: 6px;
+        background: red;
+        border-radius: 50%;
+        position: absolute;
+        right: 50px;
+        top: 8px;
+      }
+      
+      #myPanli {
+        position: relative;
+      }
+      
+      .red_new {
+        width: 24px;
+        height: 12px;
+        background: url(http://sf.panli.com/FrontEnd/images20090801/newmypanli/coupon/newcoupon/new_img_03.png) no-repeat;
+        position: absolute;
+        top: 6px;
+        right: 44px;
+      }
+    </style>
+  </ul>
+
+</div>

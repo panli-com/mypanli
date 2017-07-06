@@ -1,0 +1,116 @@
+<link href="http://sf.panli.com/FrontEnd/css20090801/newmypanli/selfPurchase/order.css?v=1.5" rel="stylesheet" type="text/css" />
+<style>
+  .felf-message-err {
+    background: #ffe9da;
+    border: #dc3e07 solid 1px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: #dc3e07;
+  }
+  
+  .felf-message-err .p1 {
+    padding-bottom: 5px;
+  }
+  
+  .felf-message-err a {
+    color: #4694cc;
+  }
+</style>
+
+<div id="am_xian" class="am_xian">
+
+  <input type="hidden" value="-1" id="selfWarnId" />
+  <div class="fill">
+    <div class="name">
+      <h2>
+        欢迎使用Panli转运</h2>
+      <a href="javascript:;" onclick="$('.f_ti').show();">(什么是Panli转运？)</a>
+    </div>
+    <div class="f_ti" id="ti1">
+      <i>箭头</i>
+      <p>
+        在大陆购物网站下单付款，然后将商品邮寄至<a href="http://www.panli.com/mypanli/SelfPurchase/Address.aspx">转运仓库地址</a>，提交购物清单后，Panli即可为您验货和集中运送。<a href="http://service.panli.com/Help/List/12.html" target="_blank">了解更多>></a></p>
+      <a title="关闭" class="guan" href="javascript:;" onclick="$('#ti1').hide();"></a>
+    </div>
+
+    <div class="felf-message-err new-address-message">
+      <p class="p1">* 因公司搬迁，2017年7月10日(北京时间)起，转运服务启用新的唯一收货地址，
+        <a href="http://www.panli.com/mypanli/SelfPurchase/Address.aspx">查看新地址</a> 。
+      </p>
+      <p>* 已发货至旧地址的包裹仍可接收，截至2017年7月16日(北京时间)。</p>
+    </div>
+
+    <div class="sm">
+      <img src="http://sf.panli.com/FrontEnd/images20090801/newmypanli/selfPurchase/s_1.gif" alt="提交其他网站购物清单" />
+    </div>
+
+    <div class="self_box">
+      <div class="wangzhi">
+        <h2>
+          请输入您在其他网站购买商品的网址：</h2>
+        <div class="wz">
+          <input class="www" type="text" id="selfUrl" value="" /><input id="spCrawlBtn" class="ok" type="button" value="添加商品" onmouseover="this.className='ok_on'" onmouseout="this.className='ok'" />
+        </div>
+        <div class="cuo" id="urlError" style="display: none;">
+          <p>
+            &nbsp;</p>
+        </div>
+      </div>
+      <div class="bt">
+        <ul>
+          <li class="u1" style="width: 275px">商品名称</li>
+          <li class="u4" style="width: 127px; display: none;">单价</li>
+          <li class="u2" style="width: 140px">数量</li>
+          <li class="u3">备注</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sp_info" id="splistPanel">
+      <div class="wu" id="noitemPanel">
+        <h2>
+          请将您在其他网站购买商品的详细页网址粘贴到输入框中提交，系统将为您自动抓取。</h2>
+        <p>
+          如：http://item.taobao.com/item.htm?id=...</p>
+      </div>
+      <div style="display: none;" class="loading" id="spLoading">
+        <img src="http://sf.panli.com/FrontEnd/images20090801/newmypanli/loading.gif" alt="loading" />
+        <p>
+          正在抓取商品信息...</p>
+      </div>
+      <table class="no_info" id="addInputPanel" style="display: none;">
+        <tr>
+          <td class="w1">
+            <a id="spinputDel" href="#" title="删除"></a>
+          </td>
+          <td class="w2">
+            <textarea id="spname" class="red" cols="" rows="">请填写商品名称</textarea>
+          </td>
+          <td class="w8" style="display: none;">
+            <textarea id="spprice" class="" cols="" rows="">0</textarea>
+          </td>
+          <td class="w3">
+            <a class="jian" href="#" title="减"></a>
+            <input class="spbuynum" id="spnum" type="text" value="1" />
+            <a class="jia" href="#" title="加"></a>
+          </td>
+          <td class="w4">
+            <textarea id="spremark" class="red" cols="" rows="">请填写商品备注</textarea>
+          </td>
+        </tr>
+        <tr>
+          <td class="w5" colspan="4">
+            <input id="spinputsubmit" type="button" value="添加" onmouseover="this.className='by'" onmouseout="this.className=''" />
+            <p>
+              商品信息抓取不成功，您可手动添加后提交！</p>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+
+    <div id="spsubmitPanel" class="tijiao" style="display: none;">
+      <a href="#" id="spsubmit">提交商品清单</a></div>
+  </div>
+
+</div>

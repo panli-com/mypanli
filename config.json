@@ -1,0 +1,19 @@
+{
+  "start": "0706",
+  "0706": {
+    "title": "转运仓库地址",
+    "keywords": "",
+    "description": "",
+    "version": "0.1.3",
+    "author": "Julian",
+    "url": "http://www.panli.com/",
+    "load": {
+      "css": ["./20170621/src/scss/main.scss"],
+      "js": ["./20170621/src/js/*.js"]
+    },
+    "build": {
+      "css": "main.min.css",
+      "js": "head_2016.js"
+    }
+  }
+}
